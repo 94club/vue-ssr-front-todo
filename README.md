@@ -1,6 +1,7 @@
-# vue + ssr 前端常见技术示例
-客户端用vue+ssr，服务端用koa2-API-template为客户端提供api数据。  
-前后端分离的方式演示网站开发中的常见技术示例
+# Vue 2.0 + ssr 前端常见技术示例
+客户端用 Vue 2.0 + vue-router + vuex，服务端用[koa2-API-template](https://github.com/yzijun/koa2-API-template)为客户端提供api数据。  
+前后端分离的方式演示网站开发中的常见技术示例  
+基于[vue-hackernews-2.0](https://github.com/vuejs/vue-hackernews-2.0)项目,并且在此基础上做了修改。
 
 ## Koa2 RESTful API 服务器模板
 服务端 [koa2-API-template](https://github.com/yzijun/koa2-API-template)  
