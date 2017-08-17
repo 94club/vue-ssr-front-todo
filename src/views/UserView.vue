@@ -1,19 +1,11 @@
 <template>
   <div class="user-view">
-    <template v-if="user">
-      <h1>User : {{ user.id }}</h1>
+    <template v-if="users">
       <ul class="meta">
-        <li><span class="label">Created:</span> {{ user.created | timeAgo }} ago</li>
-        <li><span class="label">Karma:</span> {{ user.karma }}</li>
-        <li v-if="user.about" v-html="user.about" class="about"></li>
+        <li v-for="user in users" :key="user.id">
+          <span class="label">username:</span> {{ user.username }}
+        </li>
       </ul>
-      <p class="links">
-        <a :href="'https://news.ycombinator.com/submitted?id=' + user.id">submissions</a> |
-        <a :href="'https://news.ycombinator.com/threads?id=' + user.id">comments</a>
-      </p>
-    </template>
-    <template v-else-if="user === false">
-      <h1>User not found.</h1>
     </template>
   </div>
 </template>
@@ -24,25 +16,24 @@ export default {
   name: 'user-view',
 
   computed: {
-    user () {
-      return this.$store.state.users[this.$route.params.id]
+    users () {
+      return this.$store.state.user.users
     }
   },
 
-  asyncData ({ store, route: { params: { id }}}) {
-    return store.dispatch('FETCH_USER', { id })
+  asyncData ({ store }) {
+    return store.dispatch('GetUsers')
   },
 
   title () {
-    return this.user
-      ? this.user.id
-      : 'User not found'
+    return '用户列表'
   }
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .user-view
+  margin-top 20px
   background-color #fff
   box-sizing border-box
   padding 2em 3em

@@ -5,14 +5,10 @@
         <router-link to="/" exact>
           <img class="logo" src="~public/logo-48.png" alt="logo">
         </router-link>
-        <router-link to="/top">Top</router-link>
-        <router-link to="/new">New</router-link>
-        <router-link to="/show">Show</router-link>
-        <router-link to="/ask">Ask</router-link>
-        <router-link to="/job">Jobs</router-link>
-        <a class="github" href="https://github.com/vuejs/vue-hackernews-2.0" target="_blank" rel="noopener">
-          Built with Vue.js
-        </a>
+        <router-link to="/user">事项列表</router-link>
+        <router-link to="/new">骇客新闻</router-link>
+        <a class="regist" href="#">注册</a>
+        <a class="login" href="#">登录</a>
       </nav>
     </header>
     <transition name="fade" mode="out-in">
@@ -36,7 +32,7 @@ a
   text-decoration none
 
 .header
-  background-color #ff6600
+  background-color #1D8CE0
   position fixed
   z-index 999
   height 55px
@@ -64,10 +60,16 @@ a
       font-weight 400
     &:nth-child(6)
       margin-right 0
-  .github
+  .login
     color #fff
     font-size .9em
     margin 0
+    float right
+  .regist
+    color #fff
+    font-size .9em
+    margin-left 10px
+    margin-right 0
     float right
 
 .logo

@@ -1,6 +1,5 @@
 import axios from 'axios';
-import store from '../vuex/store';
-// import router from '../router';
+import { createStore } from '../store'
 
 // 创建axios实例
 const service = axios.create({
@@ -10,16 +9,8 @@ const service = axios.create({
 
 // request拦截器
 service.interceptors.request.use(config => {
-  // Do something before request is sent
-  // if (store.getters.token) {
-  //   config.headers['X-Token'] = store.getters.token; // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
-  // }
-  const token = store.getters.userToken.token // 此函数自行实现
+  const token = createStore().getters.token // 取得用户token
   if (token) {
-    // console.log('before token:' + token)
-    // token = token.replace('b', 'B')
-    // console.log('after token:' + token)
-    // config.headers = { Authorization: 'Bearer ' + token }
     config.headers.Authorization = `Bearer ${token}`
   }
   return config;

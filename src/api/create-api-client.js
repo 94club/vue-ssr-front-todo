@@ -1,7 +1,5 @@
-// import Firebase from 'firebase/app'
-// import 'firebase/database'
+import api from './axios.api'
 
-export function createAPI ({ config, version }) {
-  // Firebase.initializeApp(config)
-  // return Firebase.database().ref(version)
+export function createAPI () {
+  return api
 }
