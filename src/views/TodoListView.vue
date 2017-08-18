@@ -1,49 +1,61 @@
 <template>
-    <div class="con">
-        <section class="todoapp">
-            <header class="header">
-                <h1>todos</h1>
-                <input class="new-todo" autofocus autocomplete="off" placeholder="What needs to be done?" v-model="newTodo" @keyup.enter="addTodo">
-            </header>
-            <section class="main" v-show="todos.length">
-                <input class="toggle-all" type="checkbox" v-model="allDone">
-                <ul class="todo-list">
-                    <li class="todo" v-for="todo in filteredTodos" :class="{completed: todo.completed, editing: todo == editedTodo}">
-                        <div class="view">
-                            <input class="toggle" type="checkbox" v-model="todo.completed">
-                            <label @dblclick="editTodo(todo)">{{todo.title}}</label>
-                            <button class="destroy" @click="removeTodo(todo)"></button>
-                        </div>
-                        <input class="edit" type="text" v-model="todo.title" v-todo-focus="todo == editedTodo" @blur="doneEdit(todo)" @keyup.enter="doneEdit(todo)" @keyup.esc="cancelEdit(todo)">
-                    </li>
-                </ul>
-            </section>
-            <footer class="footer" v-show="todos.length">
-                <span class="todo-count">
-                    <strong v-text="remaining"></strong> {{pluralize('item', remaining)}} left
-                </span>
-                <ul class="filters">
-                    <li>
-                        <a href="#/all" :class="{selected: visibility == 'all'}">All</a>
-                    </li>
-                    <li>
-                        <a href="#/active" :class="{selected: visibility == 'active'}">Active</a>
-                    </li>
-                    <li>
-                        <a href="#/completed" :class="{selected: visibility == 'completed'}">Completed</a>
-                    </li>
-                </ul>
-                <button class="clear-completed" @click="removeCompleted" v-show="todos.length > remaining">
-                    Clear completed
-                </button>
-            </footer>
-        </section>
+    <div class="app-container">
+        <!-- <el-table :data="todoPage" border fit highlight-current-row style="width: 100%">
+    
+            <el-table-column align="center" label="序号" width="65">
+                <template scope="scope">
+                    <span>{{scope.row.id}}</span>
+                </template>
+            </el-table-column>
+    
+            <el-table-column width="160" align="center" label="时间">
+                <template scope="scope">
+                    <span>{{scope.row.created_at}}</span>
+                </template>
+            </el-table-column>
+    
+            <el-table-column min-width="300" label="内容">
+                <template scope="scope">
+                    <span class="link-type">{{scope.row.content}}</span>
+                </template>
+            </el-table-column>
+    
+            <el-table-column width="90" align="center" label="作者">
+                <template scope="scope">
+                    <span>{{scope.row.user.username}}</span>
+                </template>
+            </el-table-column>
+    
+            <el-table-column align="center" label="操作" width="150">
+                <template scope="scope">
+                    <el-button size="small" type="success" >增加
+                    </el-button>
+                    <el-button size="small" type="danger">删除
+                    </el-button>
+                </template>
+            </el-table-column>
+    
+        </el-table> -->
     </div>
 </template>
 
 <script>
 export default {
+  name: 'todolist-view',
 
+  computed: {
+    todoPage () {
+      return this.$store.state.todoList.todoPage
+    }
+  },
+
+  asyncData ({ store }) {
+    return store.dispatch('TodoPages')
+  },
+
+  title () {
+    return '待完成的事项列表'
+  }
 }
 </script>
 
