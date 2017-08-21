@@ -11,3 +11,14 @@ export const apiFetch = createAPI()
 export function homePageData () {
   
 }
+
+export function watchList (cb) {
+    let first = true
+    const handler = snapshot => {
+      if (first) {
+        first = false
+      } else {
+        cb(snapshot.val())
+      }
+    }
+  }

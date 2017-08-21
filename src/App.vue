@@ -5,7 +5,7 @@
         <router-link to="/" exact>
           <img class="logo" src="~public/logo-48.png" alt="logo">
         </router-link>
-        <router-link to="/user">事项列表</router-link>
+        <router-link to="/todolist">事项列表</router-link>
         <router-link to="/new">骇客新闻</router-link>
         <a class="regist" href="#">注册</a>
         <a class="login" href="#">登录</a>

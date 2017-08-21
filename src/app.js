@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
-// import ElementUI from 'element-ui'
-// import 'element-ui/lib/theme-default/index.css'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-default/index.css'
 import { createStore } from './store'
 import { createRouter } from './router'
 import { sync } from 'vuex-router-sync'
@@ -11,8 +11,8 @@ import * as filters from './util/filters'
 // mixin for handling title
 Vue.mixin(titleMixin)
 
-// 不使用ElementUI原因是不能生成静态的html代码
-// Vue.use(ElementUI)
+// 只使用ElementUI的组件原因是不能生成静态的html代码
+Vue.use(ElementUI)
 
 // register global utility filters.
 Object.keys(filters).forEach(key => {
