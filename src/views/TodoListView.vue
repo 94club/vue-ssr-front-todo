@@ -35,51 +35,38 @@
     
         </el-table>
     </div> -->
-    <div class="ui items">
-        <div class="item">
-            <div class="ui small image">
-            <img src="/public/image.png">
+    <div class="ui container">
+        <div class="ui items">
+            <div class="item" v-for="todo in todoPage" :key="todo.id">
+                <div class="ui small image">
+                <img src="/public/image.png">
+                </div>
+                <div class="content">
+                <div class="header">{{todo.content}}</div>
+                <div class="meta">
+                    <span class="price">1200 美元</span>
+                    <span class="stay">{{todo.created_at}}</span>
+                </div>
+                <div class="description">
+                    <p>它接受一个DOM节点对象作为参数，返回一个包含该节点最终样式信息的对象。所谓“最终样式信息”，指的是各种CSS规则叠加后的结果。</p>
+                </div>
+                </div>
             </div>
-            <div class="content">
-            <div class="header">箭头谷露营</div>
-            <div class="meta">
-                <span class="price">1200 美元</span>
-                <span class="stay">1 个月</span>
-            </div>
-            <div class="description">
-                <p>它接受一个DOM节点对象作为参数，返回一个包含该节点最终样式信息的对象。所谓“最终样式信息”，指的是各种CSS规则叠加后的结果。</p>
-            </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="ui small image">
-            <img src="/public/image.png">
-            </div>
-            <div class="content">
-            <div class="header">Buck's Homebrew Stayaway</div>
-            <div class="meta">
-                <span class="price">1000 美元</span>
-                <span class="stay">2 周</span>
-            </div>
-            <div class="description">
-                <p>它接受一个DOM节点对象作为参数，返回一个包含该节点最终样式信息的对象。所谓“最终样式信息”，指的是各种CSS规则叠加后的结果。</p>
-            </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="ui small image">
-            <img src="/public/image.png">
-            </div>
-            <div class="content">
-            <div class="header">Astrology Camp</div>
-            <div class="meta">
-                <span class="price">1600 美元</span>
-                <span class="stay">6 周</span>
-            </div>
-            <div class="description">
-                <p>它接受一个DOM节点对象作为参数，返回一个包含该节点最终样式信息的对象。所谓“最终样式信息”，指的是各种CSS规则叠加后的结果。</p>
-            </div>
-            </div>
+            <!-- <div class="item">
+                <div class="ui small image">
+                <img src="/public/image.png">
+                </div>
+                <div class="content">
+                <div class="header">箭头谷露营</div>
+                <div class="meta">
+                    <span class="price">1200 美元</span>
+                    <span class="stay">1 个月</span>
+                </div>
+                <div class="description">
+                    <p>它接受一个DOM节点对象作为参数，返回一个包含该节点最终样式信息的对象。所谓“最终样式信息”，指的是各种CSS规则叠加后的结果。</p>
+                </div>
+                </div>
+            </div> -->
         </div>
     </div>
 </template>
@@ -139,6 +126,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.app-container
+.container
     margin-top 20px
+.ui.items > .item > .content > .header
+    margin 2px 0px 0px
 </style>

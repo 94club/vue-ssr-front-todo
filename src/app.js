@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import App from './App.vue'
+import 'semantic-ui-css/semantic.css'  // 导入semantic-ui的css
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
-import 'semantic-ui-css/semantic.min.css'  // 导入semantic-ui的css
 import { createStore } from './store'
 import { createRouter } from './router'
 import { sync } from 'vuex-router-sync'
