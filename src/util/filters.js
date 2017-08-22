@@ -1,3 +1,5 @@
+import timeago from 'timeago.js'
+
 export function host (url) {
   const host = url.replace(/^https?:\/\//, '').replace(/\/.*$/, '')
   const parts = host.split('.').slice(-3)
@@ -21,4 +23,11 @@ function pluralize (time, label) {
     return time + label
   }
   return time + label + 's'
+}
+/**
+ * 新的格式化日期为xx以前
+ * return 8分钟前
+ */ 
+export function newTimeAgo (dateTime) {
+  return timeago(null, 'zh_CN').format(dateTime)
 }

@@ -61,6 +61,7 @@
   }
   .ui.inverted.menu, .ui.secondary.inverted.pointing.menu {
     border: none;
+    line-height: 37px;
   }
   .ui.secondary.inverted.menu a.item {
     color: none;
@@ -70,6 +71,7 @@
    } */
    .ui.secondary.pointing.menu .item {
      border-bottom: none;
+     line-height: 25px;
    }
   .masthead .ui.menu .ui.button {
     margin-left: 0.5em;

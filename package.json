@@ -27,6 +27,7 @@
     "lru-cache": "^4.0.2",
     "semantic-ui-css": "^2.2.12",
     "serve-favicon": "^2.4.1",
+    "timeago.js": "^3.0.2",
     "vue": "^2.4.1",
     "vue-router": "^2.7.0",
     "vue-server-renderer": "^2.4.1",

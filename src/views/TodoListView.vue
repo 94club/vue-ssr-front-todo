@@ -42,13 +42,22 @@
                 <img src="/public/image.png">
                 </div>
                 <div class="content">
-                <div class="header">{{todo.content}}</div>
+                <div class="header">{{todo.title}}</div>
                 <div class="meta">
-                    <span class="price">1200 美元</span>
-                    <span class="stay">{{todo.created_at}}</span>
+                    <div class="ui feed">
+                        <div class="event">
+                            <div class="label">
+                                <img src="/public/jenny.jpg">
+                            </div>
+                                <div class="content">
+                                    <div class="summary">{{todo.user.username}} <div class="date">{{todo.created_at | newTimeAgo}} </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="description">
-                    <p>它接受一个DOM节点对象作为参数，返回一个包含该节点最终样式信息的对象。所谓“最终样式信息”，指的是各种CSS规则叠加后的结果。</p>
+                    <p>{{todo.content}}</p>
                 </div>
                 </div>
             </div>
@@ -73,6 +82,7 @@
 
 <script>
 // import { watchList } from '../api'
+import { newTimeAgo } from '../util/filters'
 
 export default {
   name: 'todolist-view',
