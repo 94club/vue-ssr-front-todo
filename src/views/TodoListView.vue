@@ -35,48 +35,75 @@
     
         </el-table>
     </div> -->
-    <div class="ui container">
-        <div class="ui items">
-            <div class="item" v-for="todo in todoPage" :key="todo.id">
-                <div class="ui small image">
-                <img src="/public/image.png">
-                </div>
-                <div class="content">
-                <div class="header">{{todo.title}}</div>
-                <div class="meta">
-                    <div class="ui feed">
-                        <div class="event">
-                            <div class="label">
-                                <img src="/public/jenny.jpg">
-                            </div>
-                                <div class="content">
-                                    <div class="summary">{{todo.user.username}} <div class="date">{{todo.created_at | newTimeAgo}} </div>
+    <div>
+        <div class="ui container">
+            <div class="ui items">
+                <el-button class="filter-item" style="margin-left: 10px;" @click="handleCreate" type="primary" icon="edit">添加事项</el-button>
+
+                <div class="item" v-for="todo in todoPage" :key="todo.id">
+                    <div class="ui small image">
+                    <img src="/public/image.png">
+                    </div>
+                    <div class="content">
+                    <div class="header">{{todo.title}}</div>
+                    <div class="meta">
+                        <div class="ui feed">
+                            <div class="event">
+                                <div class="label">
+                                    <img src="/public/jenny.jpg">
+                                </div>
+                                    <div class="content">
+                                        <div class="summary">{{todo.user.username}} <div class="date">{{todo.created_at | newTimeAgo}} </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="description">
+                        <p>{{todo.content}}</p>
+                    </div>
+                    </div>
                 </div>
-                <div class="description">
-                    <p>{{todo.content}}</p>
-                </div>
-                </div>
+                <!-- <div class="item">
+                    <div class="ui small image">
+                    <img src="/public/image.png">
+                    </div>
+                    <div class="content">
+                    <div class="header">箭头谷露营</div>
+                    <div class="meta">
+                        <span class="price">1200 美元</span>
+                        <span class="stay">1 个月</span>
+                    </div>
+                    <div class="description">
+                        <p>它接受一个DOM节点对象作为参数，返回一个包含该节点最终样式信息的对象。所谓“最终样式信息”，指的是各种CSS规则叠加后的结果。</p>
+                    </div>
+                    </div>
+                </div> -->
             </div>
-            <!-- <div class="item">
-                <div class="ui small image">
-                <img src="/public/image.png">
-                </div>
-                <div class="content">
-                <div class="header">箭头谷露营</div>
-                <div class="meta">
-                    <span class="price">1200 美元</span>
-                    <span class="stay">1 个月</span>
-                </div>
-                <div class="description">
-                    <p>它接受一个DOM节点对象作为参数，返回一个包含该节点最终样式信息的对象。所谓“最终样式信息”，指的是各种CSS规则叠加后的结果。</p>
-                </div>
-                </div>
-            </div> -->
         </div>
+
+        <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
+        <el-form class="small-space" :model="temp" label-position="left" label-width="70px" style='width: 500px; margin-left:50px;'>
+
+            <el-form-item label="事项标题">
+            <el-input v-model="temp.title"></el-input>
+            </el-form-item>
+
+            <el-form-item label="重要性">
+            <el-rate style="margin-top:8px;" v-model="temp.importance" :colors="['#99A9BF', '#F7BA2A', '#FF9900']"></el-rate>
+            </el-form-item>
+
+            <el-form-item label="事项内容">
+            <el-input type="textarea" :autosize="{ minRows: 4, maxRows: 6}" placeholder="请输入内容" v-model="temp.content">
+            </el-input>
+            </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
+            <el-button v-if="dialogStatus=='create'" type="primary" @click="create">确 定</el-button>
+            <el-button v-else type="primary" @click="update">确 定</el-button>
+        </div>
+        </el-dialog>
     </div>
 </template>
 
@@ -88,7 +115,18 @@ export default {
   name: 'todolist-view',
   data () {
     return {
-      page: 1
+      page: 1, // 默认第一页
+      temp: {
+        title: '', // 标题
+        content: '', // 内容
+        importance: 0, // 重要性
+      },
+      textMap: {
+        update: '编辑',
+        create: '创建'
+       },
+      dialogStatus: '', // 对话框的状态 创建或更新
+      dialogFormVisible: false // 显示对话框
     }
   },
 
@@ -102,16 +140,42 @@ export default {
     return store.dispatch('TodoPages')
   },
 
-//   methods: {
-//     loadItems () {
-//       this.$bar.start()
-//       this.$store.dispatch('TodoPages', {
-//         page: this.page
-//       }).then(() => {
-//         this.$bar.finish()
-//       })
-//     }
-//   },
+  methods: {
+    // loadItems () {
+    //   this.$bar.start()
+    //   this.$store.dispatch('TodoPages', {
+    //     page: this.page
+    //   }).then(() => {
+    //     this.$bar.finish()
+    //   })
+    // }
+    handleCreate() {
+        this.resetTemp()
+        this.dialogStatus = 'create'
+        this.dialogFormVisible = true
+    },
+    create() {
+        
+        this.dialogFormVisible = false
+        this.$message({
+          message: '成功新增一条事项',
+          type: 'success'
+        })
+        // this.$notify({
+        //     title: '成功',
+        //     message: '创建成功',
+        //     type: 'success',
+        //     duration: 2000
+        // });
+    },
+    resetTemp() {
+      this.temp = {
+        title: '', // 标题
+        content: '', // 内容
+        importance: 0, // 重要性
+      }
+    }
+  },
 //   首页数据用watchList不好用
 //   beforeMount () {
 //     if (this.$root._isMounted) {

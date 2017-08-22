@@ -31,8 +31,8 @@
             <a class="item">Company</a>
             <a class="item">Careers</a> -->
             <div class="right item">
-              <a class="ui inverted button">Log in</a>
-              <a class="ui inverted button">Sign Up</a>
+              <a class="ui inverted button">登录</a>
+              <a class="ui inverted button">注册</a>
             </div>
           </div>
         </div>
@@ -53,7 +53,7 @@
     vertical-align: bottom;
   }
   .ui.inverted.segment, .ui.primary.inverted.segment {
-      background: #2185D0;
+      background: #10A3A3;
       color: rgba(255, 255, 255, 0.9);
   }
   .ui.segment {
