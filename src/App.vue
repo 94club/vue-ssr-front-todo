@@ -42,6 +42,13 @@
     <transition name="fade" mode="out-in">
       <router-view class="view"></router-view>
     </transition>
+    <!-- Footer Contents -->
+    <div class="ui inverted vertical masthead center aligned segment">
+        <div class="ui container">
+          <span>© 2017</span> 联系 xxxx@163.com
+        </div>
+    </div>
+
   </div>
 </template>
 

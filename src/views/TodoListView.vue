@@ -217,4 +217,6 @@ export default {
     margin-top 20px
 .ui.items > .item > .content > .header
     margin 2px 0px 0px
+.ui.feed > .event > .content .summary
+    color rgba(0, 0, 0, 0.6)
 </style>
