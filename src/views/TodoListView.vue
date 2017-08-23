@@ -41,7 +41,7 @@
                 <el-button class="filter-item" style="margin-left: 10px;" @click="handleCreate" type="primary" icon="edit">添加事项</el-button>
 
                 <div class="item" v-for="todo in todoPage" :key="todo.id">
-                    <div class="ui small image">
+                  <div class="ui small image">
                     <img src="/public/image.png">
                     </div>
                     <div class="content">
@@ -62,7 +62,11 @@
                     <div class="description">
                         <p>{{todo.content}}</p>
                     </div>
+                    <div class="extra">
+                        <div class="ui right floated primary button">Buy tickets <i class="right chevron icon"></i> </div>
+                        <div class="ui label">Limited</div>
                     </div>
+                  </div>
                 </div>
                 <!-- <div class="item">
                     <div class="ui small image">
@@ -83,26 +87,26 @@
         </div>
 
         <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-        <el-form class="small-space" :model="temp" label-position="left" label-width="70px" style='width: 500px; margin-left:50px;'>
+            <el-form class="small-space" :model="temp" label-position="left" label-width="70px" style='width: 500px; margin-left:50px;'>
 
-            <el-form-item label="事项标题">
-            <el-input v-model="temp.title"></el-input>
-            </el-form-item>
+                <el-form-item label="事项标题">
+                <el-input v-model="temp.title"></el-input>
+                </el-form-item>
 
-            <el-form-item label="重要性">
-            <el-rate style="margin-top:8px;" v-model="temp.importance" :colors="['#99A9BF', '#F7BA2A', '#FF9900']"></el-rate>
-            </el-form-item>
+                <el-form-item label="重要性">
+                <el-rate style="margin-top:8px;" v-model="temp.importance" :colors="['#99A9BF', '#F7BA2A', '#FF9900']"></el-rate>
+                </el-form-item>
 
-            <el-form-item label="事项内容">
-            <el-input type="textarea" :autosize="{ minRows: 4, maxRows: 6}" placeholder="请输入内容" v-model="temp.content">
-            </el-input>
-            </el-form-item>
-        </el-form>
-        <div slot="footer" class="dialog-footer">
-            <el-button @click="dialogFormVisible = false">取 消</el-button>
-            <el-button v-if="dialogStatus=='create'" type="primary" @click="create">确 定</el-button>
-            <el-button v-else type="primary" @click="update">确 定</el-button>
-        </div>
+                <el-form-item label="事项内容">
+                <el-input type="textarea" :autosize="{ minRows: 4, maxRows: 6}" placeholder="请输入内容" v-model="temp.content">
+                </el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                <el-button v-if="dialogStatus=='create'" type="primary" @click="create">确 定</el-button>
+                <el-button v-else type="primary" @click="update">确 定</el-button>
+            </div>
         </el-dialog>
     </div>
 </template>
