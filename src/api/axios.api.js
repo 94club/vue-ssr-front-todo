@@ -1,4 +1,5 @@
-import axios from 'axios';
+import axios from 'axios'
+import { Notification } from 'element-ui'
 import { createStore } from '../store'
 
 // 创建axios实例
@@ -22,7 +23,27 @@ service.interceptors.request.use(config => {
 
 // respone拦截器
 service.interceptors.response.use(
-  response => response,
+  response => {
+    const code = response.data.code
+    const message = response.data.message
+    // 401: 用户没登录
+    // 404: 没找到数据
+    if (code === 401 || code === 404) {
+      Notification({
+        title: '提示',
+        message,
+        type: 'warning'
+      })
+    } else if (code === 500) { // 服务器出错
+      Notification({
+        title: '内部错误',
+        message,
+        type: 'error'
+      })
+    } else {
+      return response
+    }
+  },
   /**
   * 下面的注释为通过response自定义code来标示请求状态，当code返回如下情况为权限有问题，登出并返回到登录页
   * 如通过xmlhttprequest 状态码标识 逻辑可写在下面error中

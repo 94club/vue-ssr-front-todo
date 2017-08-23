@@ -166,20 +166,16 @@ export default {
         method: 'post',
         data: this.todo
       }).then(response => {
-          // 更新todo列表
-        this.$store.dispatch('TodoPages')
         this.dialogFormVisible = false
-        this.$message({
-          message: '成功新增一条事项',
-          type: 'success'
-        })
+        if (response) {
+            // 更新todo列表
+            this.$store.dispatch('TodoPages')
+            this.$message({
+                message: response.data.message, // 用服务端传过来的消息内容
+                type: 'success'
+            })
+        }
       })
-        // this.$notify({
-        //     title: '成功',
-        //     message: '创建成功',
-        //     type: 'success',
-        //     duration: 2000
-        // });
     },
     // 更新事项
     update () {
