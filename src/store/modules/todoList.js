@@ -18,12 +18,11 @@ const todoList = {
         url: `/public/v1/todolist/?page=${page}`,
         method: 'get'
       }).then(response => {
-        console.log(response.data.result)
         commit('SET_TODOLIST', response.data.result)
       })
     },
 
-    GetUsers({ commit }) {
+    GetTodo({ commit }, id) {
       apiFetch({
         url: '/public/users',
         method: 'get'

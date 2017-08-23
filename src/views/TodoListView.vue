@@ -87,18 +87,18 @@
         </div>
 
         <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-            <el-form class="small-space" :model="temp" label-position="left" label-width="70px" style='width: 500px; margin-left:50px;'>
+            <el-form class="small-space" :model="todo" label-position="left" label-width="70px" style='width: 500px; margin-left:50px;'>
 
                 <el-form-item label="事项标题">
-                <el-input v-model="temp.title"></el-input>
+                <el-input v-model="todo.title"></el-input>
                 </el-form-item>
 
                 <el-form-item label="重要性">
-                <el-rate style="margin-top:8px;" v-model="temp.importance" :colors="['#99A9BF', '#F7BA2A', '#FF9900']"></el-rate>
+                <el-rate style="margin-top:8px;" v-model="todo.importance" :colors="['#99A9BF', '#F7BA2A', '#FF9900']"></el-rate>
                 </el-form-item>
 
                 <el-form-item label="事项内容">
-                <el-input type="textarea" :autosize="{ minRows: 4, maxRows: 6}" placeholder="请输入内容" v-model="temp.content">
+                <el-input type="textarea" :autosize="{ minRows: 4, maxRows: 6}" placeholder="请输入内容" v-model="todo.content">
                 </el-input>
                 </el-form-item>
             </el-form>
@@ -113,6 +113,7 @@
 
 <script>
 // import { watchList } from '../api'
+import { apiFetch } from '../api'
 import { newTimeAgo } from '../util/filters'
 
 export default {
@@ -120,7 +121,7 @@ export default {
   data () {
     return {
       page: 1, // 默认第一页
-      temp: {
+      todo: {
         title: '', // 标题
         content: '', // 内容
         importance: 0, // 重要性
@@ -153,18 +154,26 @@ export default {
     //     this.$bar.finish()
     //   })
     // }
-    handleCreate() {
-        this.resetTemp()
+    handleCreate () {
+        this.resetTodo()
         this.dialogStatus = 'create'
         this.dialogFormVisible = true
     },
-    create() {
-        
+    // 新增事项
+    create () {
+      apiFetch({
+        url: '/api/v1/todolist/',
+        method: 'post',
+        data: this.todo
+      }).then(response => {
+          // 更新todo列表
+        this.$store.dispatch('TodoPages')
         this.dialogFormVisible = false
         this.$message({
           message: '成功新增一条事项',
           type: 'success'
         })
+      })
         // this.$notify({
         //     title: '成功',
         //     message: '创建成功',
@@ -172,8 +181,12 @@ export default {
         //     duration: 2000
         // });
     },
-    resetTemp() {
-      this.temp = {
+    // 更新事项
+    update () {
+
+    },
+    resetTodo () {
+      this.todo = {
         title: '', // 标题
         content: '', // 内容
         importance: 0, // 重要性
