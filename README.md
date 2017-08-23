@@ -13,6 +13,18 @@
 - TodoMVC
 - hackernews
 
+## 技术栈
+- [vue2](https://github.com/vuejs/vue) - A progressive, incrementally-adoptable JavaScript framework for building UI on the web.
+- [vue-router](https://github.com/vuejs/vue-router) - The official router for Vue.js. 
+- [vuex](https://github.com/vuejs/vuex) - Centralized State Management for Vue.js.
+- [vuex-router-sync](https://github.com/vuejs/vuex-router-sync) - Effortlessly keep vue-router and vuex store in sync. 
+- [element-ui](https://github.com/ElemeFE/element) - A Vue.js 2.0 UI Toolkit for Web
+- [semantic-ui-css](https://github.com/Semantic-Org/Semantic-UI-CSS) - CSS Only distribution http://www.semantic-ui.com
+- [axios](https://github.com/mzabriskie/axios) - Promise based HTTP client for the browser and node.js.
+- [js-cookie](https://github.com/js-cookie/js-cookie) - A simple, lightweight JavaScript API for handling browser cookies.
+- [timeago.js](https://github.com/hustcc/timeago.js) - timeago.js is a tiny(~2.0kb) library used to format date with `*** time ago` statement. eg: '3 hours ago'. No dependency & localization & tiny. 
+- [downloadjs](https://github.com/rndme/download) - file downloading using client-side javascript
+
 ## 开发说明
 
 ``` bash
