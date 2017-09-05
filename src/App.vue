@@ -12,7 +12,8 @@
       </nav>
     </header> -->
 
-
+    <!-- 登录组件 -->
+    <login :is-show="isShowLogin" @close="loginClose"></login>
     <!-- Page Contents -->
     <div class="pusher">
       <div class="ui inverted vertical masthead center aligned segment">
@@ -31,7 +32,7 @@
             <a class="item">Company</a>
             <a class="item">Careers</a> -->
             <div class="right item">
-              <a class="ui inverted button">登录</a>
+              <a class="ui inverted button" @click="login">登录</a>
               <a class="ui inverted button">注册</a>
             </div>
           </div>
@@ -51,6 +52,27 @@
 
   </div>
 </template>
+
+<script>
+import Login from './components/Login.vue'
+
+export default {
+  data () {
+    return {
+      isShowLogin: false // 显示登录对话框
+    }
+  },
+  components: { Login },
+  methods: {
+    login () {
+      this.isShowLogin = true
+    },
+    loginClose () {
+      this.isShowLogin = false
+    }
+  }
+}
+</script>
 
 <style>
   .logo {

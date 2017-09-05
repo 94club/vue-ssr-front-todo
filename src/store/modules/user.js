@@ -25,10 +25,10 @@ const user = {
 
   actions: {
     // 登录
-    Login({ commit }, user) {
-      const username = user.username.trim();
+    Login ({ commit }, user) {
+      // const username = user.username.trim()
       const data = {
-        username,
+        username: user.username,
         password: user.password
       }
       apiFetch({
@@ -36,9 +36,12 @@ const user = {
         method: 'post',
         data
       }).then(response => {
-        const token = response.data.result.token
-        Cookies.set(userToken, token)
-        commit('SET_TOKEN', token)
+        // 验证失败时也执行判断是否有response
+        if (response) {
+          const token = response.data.result.token
+          Cookies.set(userToken, token)
+          commit('SET_TOKEN', token)
+        }
       })
     },
 
